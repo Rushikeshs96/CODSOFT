@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        let displayValue = '';
+
+        function clearDisplay() {
+            displayValue = '';
+            updateDisplay();
+        }
+
+        function appendNumber(number) {
+            displayValue += number;
+            updateDisplay();
+        }
+
+        function appendDecimal() {
+            if (!displayValue.includes('.')) {
+                displayValue += '.';
+                updateDisplay();
+            }
+        }
+
+        function operate(operator) {
+            if (displayValue !== '') {
+                displayValue += operator;
+                updateDisplay();
+            }
+        }
+
+        function calculate() {
+            if (displayValue !== '') {
+                let result = eval(displayValue);
+                displayValue = result.toString();
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').innerText = displayValue;
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            display: grid;
+            grid-gap: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .button {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+
+        }
+
+        .button:hover {
+            background-color: aquamarine;
+        }
+
+        .display {
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="button" onclick="clearDisplay()">C</div>
+        <div class="button" onclick="appendNumber(7)">7</div>
+        <div class="button" onclick="appendNumber(8)">8</div>
+        <div class="button" onclick="appendNumber(9)">9</div>
+        <div class="button" onclick="operate('+')">+</div>
+        <div class="button" onclick="appendNumber(4)">4</div>
+        <div class="button" onclick="appendNumber(5)">5</div>
+        <div class="button" onclick="appendNumber(6)">6</div>
+        <div class="button" onclick="operate('-')">-</div>
+        <div class="button" onclick="appendNumber(1)">1</div>
+        <div class="button" onclick="appendNumber(2)">2</div>
+        <div class="button" onclick="appendNumber(3)">3</div>
+        <div class="button" onclick="operate('*')">*</div>
+        <div class="button" onclick="appendNumber(0)">0</div>
+        <div class="button" onclick="appendDecimal()">.</div>
+        <div class="button" onclick="calculate()">=</div>
+        <div class="button" onclick="operate('/')">/</div>
+    </div>
+</body>
+
+</html>
